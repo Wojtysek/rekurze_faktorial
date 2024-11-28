@@ -12,6 +12,7 @@ double fact(double x) {
 	double vysledek = fact(x - 1);
 
 	if (vysledek > DBL_MAX / x) {
+		printf("chyba: prekrocil se limit datoveho typu\n");
 		return -1;
 	}
 	
@@ -24,18 +25,24 @@ int main() {
 	scanf("%lf", &x);
 	printf("\n\r");
 
-	double vysledek = fact(x);
-
-	if (vysledek == -1) { //ukoncit program pokud je vysledek prilis veliky
-		printf("vysledek prekrocil limit datoveho typu");
+	if (x < 0) {
+		printf("nelze vypocitat zaporne hodnoty. zadejte jinou hodnotu\n");
 		return 1;
 	}
 
-	if (vysledek < 1e9) {
-		printf("faktorial z %.0lf: %.0lf\n\r", x, vysledek);
-	}
-	else {
-		printf("Factorial z %.0lf: %e\n\r", x, vysledek);
+
+	double vysledek = fact(x);
+
+	if (vysledek == -1) {
+		return 0;
 	}
 
+	
+	if (vysledek < 1e9 && vysledek >= 0) {
+		printf("faktorial z %.0lf: %.0lf\n\r", x, vysledek);
+	}
+	else if (vysledek >= 0) {
+		printf("Factorial z %.0lf: %e\n\r", x, vysledek);
+	}
+	
 }
