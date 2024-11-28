@@ -25,8 +25,13 @@ int main() {
 	scanf("%lf", &x);
 	printf("\n\r");
 
-	if (x < 0) {
+	if (x < 0) {  //check zapornych hodnot
 		printf("nelze vypocitat zaporne hodnoty. zadejte jinou hodnotu\n");
+		return 1;
+	}
+
+	if (x != (int)x) {
+		printf("zadana hodnota neni celociselna\n\r");
 		return 1;
 	}
 
